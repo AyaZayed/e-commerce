@@ -8,8 +8,8 @@ This is just like any other shopping website made with React.js and the [fake st
 
 To use this app run these commands:
 
--### `npm install`
--### `npm start`
+- ### `npm install`
+- ### `npm start`
 
 ## Built with
 

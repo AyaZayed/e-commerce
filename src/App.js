@@ -1,6 +1,6 @@
 import './css/App.css'
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
-import { AppProvider } from './context'
+import { Router, Routes, Route, Redirect } from 'react-router-dom'
+import { AppProvider } from './context/index'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './components/Home'
@@ -17,27 +17,28 @@ import Product from './components/Product'
 import NotFound from './components/NotFound'
 
 export default function App() {
+
   return (
     <AppProvider>
-      <Router>
+      <div className="App">
         <Header />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/products" component={Products} />
-          <Route path="/cart" component={Cart} />
-          <Route path="/checkout" component={Checkout} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/account" component={Account} />
-          <Route path="/admin" component={Admin} />
-          <Route path="/reset-password" component={ResetPassword} />
-          <Route path="/update-profile" component={UpdateProfile} />
-          <Route path="/product/:id" component={Product} />
-          <Route path="/404" component={NotFound} />
-          <Redirect to="/404" />
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          {/* <Route path="/products" element={<Products />} />
+        <Route path="/products/:id" element={<Product />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/update-profile" element={<UpdateProfile />} />
+        <Route path="/404" element={<NotFound />} />
+        <Redirect from="*" to="/404" /> */}
+        </Routes>
         <Footer />
-      </Router>
+      </div>
     </AppProvider>
   )
 }
