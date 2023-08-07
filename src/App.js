@@ -1,5 +1,5 @@
 import './css/App.css'
-import { Router, Routes, Route, Redirect } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { AppProvider } from './context/index'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -24,18 +24,17 @@ export default function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/products" element={<Products />} />
-        <Route path="/products/:id" element={<Product />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/account" element={<Account />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/update-profile" element={<UpdateProfile />} />
-        <Route path="/404" element={<NotFound />} />
-        <Redirect from="*" to="/404" /> */}
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:id" element={<Product />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/account" element={<Account />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/update-profile" element={<UpdateProfile />} />
+          <Route path="/404" element={<NotFound />} />
         </Routes>
         <Footer />
       </div>

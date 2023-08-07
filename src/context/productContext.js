@@ -1,4 +1,13 @@
 import React, { useEffect, useReducer, createContext } from 'react';
+import { Cloudinary } from '@cloudinary/url-gen';
+
+const cloudName = 'dcfrq5i2y'
+
+const cld = new Cloudinary({
+    cloud: {
+        cloudName: cloudName
+    }
+})
 
 export const ProductContext = createContext();
 
@@ -45,6 +54,34 @@ export const ProductProvider = ({ children }) => {
     useEffect(() => {
         window.localStorage.setItem('cart', JSON.stringify(state.cart));
     }, [state.cart]);
+
+    // upload images to cloudinary and get the url to replace the image url in the fakestoreapi
+    useEffect(() => {
+        const uploadImage = async () => {
+            const products = [...state.products];
+            const promises = products.map(async (product) => {
+                // have the public id match the product id
+                const publicId = product.id;
+                const res = await fetch(product.image);
+                const blob = await res.blob();
+                const formData = new FormData();
+                formData.append('file', blob);
+                formData.append('upload_preset', 'commerce');
+                formData.append('public_id', publicId);
+                const res2 = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+                const json = await res2.json();
+                return { ...product, image: json.secure_url };
+            });
+            const productsWithImages = await Promise.all(promises);
+            dispatch({ type: 'FETCH_PRODUCTS_SUCCESS', payload: productsWithImages });
+        }
+        uploadImage();
+        console.log(state.products);
+    }, [state.products])
+
 
     const addToCart = (product) => {
         const cart = [...state.cart];
