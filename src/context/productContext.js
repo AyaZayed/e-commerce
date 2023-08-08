@@ -1,13 +1,6 @@
 import React, { useEffect, useReducer, createContext } from 'react';
-import { Cloudinary } from '@cloudinary/url-gen';
 
-const cloudName = 'dcfrq5i2y'
-
-const cld = new Cloudinary({
-    cloud: {
-        cloudName: cloudName
-    }
-})
+const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
 
 export const ProductContext = createContext();
 
@@ -17,7 +10,8 @@ const initialState = {
     products: [],
     loading: true,
     error: null,
-    cart
+    cart,
+    featuredProducts: [],
 };
 
 const productReducer = (state, action) => {
@@ -55,7 +49,6 @@ export const ProductProvider = ({ children }) => {
         window.localStorage.setItem('cart', JSON.stringify(state.cart));
     }, [state.cart]);
 
-    // upload images to cloudinary and get the url to replace the image url in the fakestoreapi
     useEffect(() => {
         const uploadImage = async () => {
             const products = [...state.products];

@@ -1,12 +1,15 @@
 import { AuthProvider } from './authContext';
+import { LanguageContext } from './languageContext';
 import { ProductProvider } from './productContext';
 
 export function AppProvider({ children }) {
     return (
         <AuthProvider>
-            <ProductProvider>
-                {children}
-            </ProductProvider>
+            <LanguageContext>
+                <ProductProvider>
+                    {children}
+                </ProductProvider>
+            </LanguageContext>
         </AuthProvider>
     )
 }
