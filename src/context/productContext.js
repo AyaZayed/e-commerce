@@ -72,7 +72,6 @@ export const ProductProvider = ({ children }) => {
             dispatch({ type: 'FETCH_PRODUCTS_SUCCESS', payload: productsWithImages });
         }
         uploadImage();
-        console.log(state.products);
     }, [state.products])
 
 

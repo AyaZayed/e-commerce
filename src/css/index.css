@@ -9,14 +9,25 @@
   --h2: calc(var(--h3) * var(--type-scale));
   --h1: calc(var(--h2) * var(--type-scale));
   --font-small: calc(0.667rem);
-  --font-family: 'Open Sans', sans-serif;
+  --font-family: 'Poppins', sans-serif;
   /* colors */
-
+  --black: #0b090a;
+  --dark-grey: #161a1d;
+  --dark-red: #660708;
+  --red: #a4161a;
+  --light-red: #ba181b;
+  --pink-red: #e5383b;
+  --medium-grey: #b1a7a6;
+  --light-grey: #d3d3d3;
+  --lightest-grey: #f5f3f4;
+  --white: #fff;
 }
 
 html {
   font-size: 100%;
   font-family: var(--font-family);
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 ul {
@@ -62,10 +73,12 @@ button {
   cursor: pointer;
 }
 
-/* ::-moz-selection {
-  background-color: var(--primary-color);
+::-moz-selection {
+  background-color: var(--red);
+  color: var(--white);
 }
 
 ::selection {
-  background-color: var(--primary-color);
-} */
+  background-color: var(--red);
+  color: var(--white);
+}
